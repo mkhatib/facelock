@@ -23,9 +23,6 @@ public final class FaceLock extends JFrame {
         super("FaceLock!");
 		
 		
-		
-		
-		
 		// Demo
 		listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Cool.png"), "Mohammad N. Khatib"});
 		listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Adore.png"), "Ramiz Abu Khiran"});
