@@ -36,9 +36,36 @@ public final class FaceLockModel {
     }
 	// }}}
 	
+	
+	public Contact findContact(int id){
+		try {
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("select C.*,CO.name,Ci.name,T.name, A.street from Contact C,Address A, Country CO, City Ci, Town T where A.id=C.location and A.town_id=T.id and T.city_id=Ci.id and Ci.country_id=Co.id and C.id='"+id+"'");
+
+			if(r.next())
+			{
+				Address add = new Address(r.getString(9),r.getString(10),r.getString(11),r.getString(12));
+				return (new Contact(id,r.getString("firstname"), r.getString("middlename"), r.getString("lastname"), r.getInt("sex"), r.getDate("birthday"), add,r.getInt("status")));
+			}
+		} catch (Exception e) {
+			// expression
+		} finally {
+			// expression
+		}
+		
+		return null;
+	}
 	public static void main(String[] args) {
 		FaceLockModel model = new FaceLockModel();
-		
+		Contact contact = model.findContact(2);
+		if(model != null){
+			System.out.println("Contact Found!");
+			System.out.println(contact);			
+		}
+		else
+			System.out.println("Not Found!");
+			
 	}
+	
 }
 
