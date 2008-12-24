@@ -52,9 +52,17 @@ public final class FaceLockModel {
 		} finally {
 			// expression
 		}
-		
 		return null;
 	}
+	
+	public Contact findContactById(int id){
+		return findContact(id);
+	}
+	
+	public Contact find(int id){
+		return findContact(id);
+	}
+	
 	public static void main(String[] args) {
 		FaceLockModel model = new FaceLockModel();
 		Contact contact = model.findContact(2);

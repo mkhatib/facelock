@@ -1,4 +1,5 @@
-//package .Users.mkhatib.Desktop.Network-Project.facelock;
+// This Class is just for making the List of 
+// Contacts Display an Icon besides the Name.
 
 import java.awt.*;
 import javax.swing.*;

@@ -6,6 +6,8 @@ import java.util.*;
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
+
+
 public final class Contact {
     private int id;
 	private String firstName,middleName,lastName;
@@ -171,7 +173,7 @@ public final class Contact {
 	 * @return String
 	 */
 	public String toString( ) {
-		return (firstName + " " + middleName + " " + lastName + " - " + getAge(birthday) + " Year Old - From " + address + " - " + getStatus());
+		return (firstName + " " + middleName + " " + lastName + " - " + getAge() + " Year Old - From " + address + " - " + getStatus());
 	}
 
 	
@@ -182,16 +184,20 @@ public final class Contact {
 	 * @param  
 	 * @return 
 	 */
-	public int getAge(Date bd) {
+	public int getAge() {
 		Date now = new Date();
-		int age = (now.getYear() - bd.getYear());
-		Date newDate = (Date)bd.clone();
+		int age = (now.getYear() - birthday.getYear());
+		Date newDate = (Date)birthday.clone();
 		newDate.setYear(now.getYear()+age);
 		return ((now.before(newDate)) ? age : age-1);
 	}
 
 	
 	
+	
+
+	
+
 	
 
 	

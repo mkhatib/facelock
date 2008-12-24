@@ -1,0 +1,32 @@
+
+== Address ==
+	- A class to hold the address object information
+	- Parameters: 
+		* city:String
+		* country:String
+		* town:String
+		* street:String
+	- Methods: 
+		* toString: Returns a concatenated String of the address.
+	- ToDo: 
+		* Getters and Setters.
+		* Comments
+	
+== Contact == 
+	- A class to hold the Contact information
+	- Parameters:
+		* id:int
+		* firstName:String
+		* middleName:String
+		* lastName:String
+		* sex:int
+		* status:int;
+        * address:Address;
+        * birthday:Date;
+	- Methods:
+		* Getters and Setters
+		* toString:String
+		* getAge():int
+	-ToDo:
+		* Comments
+
