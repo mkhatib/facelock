@@ -64,3 +64,30 @@
 			* Setters And Getters
 
 
+The server functions in general:
+
+	- multi threaded.
+	- Invoke a login function and a new user option, after the connection is done.
+	- When login, the server checks for the entered password with the one at the database.
+	- Send list of all contact for a specifc accout.
+	- The resever receives messages which are: 
+		1. Login, 
+		2. Logout, 
+		3. Create New User, 
+		4. Add Contact, 
+		5. Delete Contact
+		6. Update Contact
+		each with its own format, and the server will execute it.
+		
+		Execution is:
+		Login : check entered info.
+		Logout : close session.
+		Create New User: the username and passowrd, save them to DB (Users table) by checking the 
+						 matching of passwords and the availabilty of the username ( or if the username 
+						 is a primary key, so there won't be a need for checking...) .
+		Add Contact: get the message and add it to the DB ( add row in the Contact table in
+					 relation to the requesting one).
+		Delete Contact:  getting the ID and remove from DB from contacts of that requesting one.
+		Update Contact:  save changes to DB ( the requesting Contact in the Contact table).
+		
+	- Give a unique id for each contact record. (why? for the login..? )
