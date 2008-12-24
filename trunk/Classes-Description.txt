@@ -30,3 +30,37 @@
 	-ToDo:
 		* Comments
 
+
+== FaceLockModel == 
+	- A Class that define the abstract model for interacting with the database
+	- Parameters:
+		* DRIVER_NAME:String
+		* SERVER:String
+		* DATABASE_NAME:String
+		* USERNAME:String
+		* PASSWORD:String
+		* JDBC_URL:String
+		* connection:Connection
+	- methods:
+	- ToDo:
+		* Setters And Getters
+		
+		
+== ContactModel ==
+	- A class to interact with the Contact Model in the database - extends FaceLockModel
+	- Parameters: 
+		* contact:Contact
+		* changed:boolean
+	- Methods:
+		* findById(int id):ContactModel - Static Method
+		* find(int id):ContactModel - Static Method
+	- ToDo:
+		- Methods
+			* findByUsernameAndPassword(String username, String password):ContactModel - Static Method, returns NULL if not found!
+			* getAllContacts():ArrayList - Returns all the contacts for the contact object
+			* update():boolean  - Update the specific contact
+			* delete():boolean - Delete the specific contact
+			* insert(Contact c):Contact - Static Method - Returns the Contact after Creating it.
+			* Setters And Getters
+
+

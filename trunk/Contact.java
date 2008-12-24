@@ -1,7 +1,6 @@
-//package .Users.mkhatib.Desktop.Network-Project.facelock;
 import java.util.*;
 /**
- * <<Class summary>>
+ * Wrap up Contact Information 
  *
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
@@ -22,11 +21,7 @@ public final class Contact {
         
     }
 	// }}}
-	
-	public Contact(int id, String fname, String mname, String lname, String status,Address address, Date birthday){
-		// set them
-	}
-	
+		
 	// Database Constructor
 	public Contact(int id, String fname, String mname, String lname, int sex, Date birthday, Address location, int status){
 		setID(id);
@@ -191,19 +186,7 @@ public final class Contact {
 		newDate.setYear(now.getYear()+age);
 		return ((now.before(newDate)) ? age : age-1);
 	}
-
-	
-	
-	
-
-	
-
-	
-
 	
 
 	// Numbers in Words
-
-	
-	
 }

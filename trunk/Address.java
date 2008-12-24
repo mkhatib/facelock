@@ -1,12 +1,11 @@
-//package .Users.mkhatib.Desktop.Network-Project.facelock;
-
 /**
- * <<Class summary>>
+ * Wrap up the Address information
  *
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
 public final class Address {
+	// Attributes
     private String city,country,town,street;
 	// {{{ Address constructor
     /**
