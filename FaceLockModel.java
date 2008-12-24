@@ -5,7 +5,7 @@ import java.sql.*;
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
-public final class FaceLockModel {
+public class FaceLockModel {
     private final String DRIVER_NAME = "com.mysql.jdbc.Driver";//"org.gjt.mm.mysql.Driver";
 	private final String SERVER = "localhost";
 	private final String DATABASE_NAME = "FaceLockDB";
@@ -13,7 +13,7 @@ public final class FaceLockModel {
 	private final String PASSWORD = "FLPassword";
 	private final String JDBC_URL = "jdbc:mysql://" + SERVER + ":3306/" + DATABASE_NAME;
 	
-	private Connection connection;
+	protected static Connection connection;
 	// {{{ FaceLockModel constructor
     /**
      * 
