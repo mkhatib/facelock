@@ -91,3 +91,39 @@ The server functions in general:
 		Update Contact:  save changes to DB ( the requesting Contact in the Contact table).
 		
 	- Give a unique id for each contact record. (why? for the login..? )
+	
+---------------------------------------------------------
+---------------------------------------------------------
+Client Side:
+--> I prefer to have the begining window as msn which to have userName and Password text fields and logIn icon + to have an icon to creat new user account.
+	- If we suppose that the DB is empty, i.e no one has an accout then:
+			* function creatNewUserAccount(userName(10Byte), passWord(2 Byte)){ 
+				//send that request to server.
+				//server creats the account and return a message.
+				}
+				//This function as ActionListener to the createNewAccount button.
+	- If group of accounts are already exist:
+			* function logIn(username(10Byte),Password(tByte){
+				//send the password with the random generated encrypion number to server.
+				//the server return the contact window and the operation which he/she can do (Add,Update,Delete,LogOut)
+			}
+			//This function is ActionListener to the LogI button.
+			
+			*function add(){
+				//open a new window (like data entry text fields) that enable the user to insert the information about the new contact.	
+			}
+			//This function is ActionListener for AddNewContact button.
+			
+			*function delete(){
+				//open a new window wich has all the contacts with combo box for each and the ones selected will be sent as a request to server to delete them. 
+				//return a message of fail or success.
+			}
+			//This function is ActionListener for DeleteAContact button.
+			*function updat(){
+				//open new window wich has all contacts with check box for each and the one selected will be sent as request to server and the server return the window which has the empty text fields info to be filled and saved by the client.				
+			}
+			//This function is ActionListener for updateAContact button.
+
+
+
+	
