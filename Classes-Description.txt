@@ -1,5 +1,5 @@
 
-== Address ==
+== Address == (NOT NEEDED ANY MORE!)
 	- A class to hold the address object information
 	- Parameters: 
 		* city:String
@@ -19,17 +19,15 @@
 		* firstName:String
 		* middleName:String
 		* lastName:String
-		* sex:int
-		* status:int;
-        * address:Address;
-        * birthday:Date;
+		* Phone:String
+		* Address:String
+        * Email:String
+        * icon:int
 	- Methods:
 		* Getters and Setters
 		* toString:String
-		* getAge():int
 	-ToDo:
-		* Comments
-
+	
 
 == FaceLockModel == 
 	- A Class that define the abstract model for interacting with the database
@@ -43,7 +41,6 @@
 		* connection:Connection
 	- methods:
 	- ToDo:
-		* Setters And Getters
 		
 		
 == ContactModel ==
@@ -51,17 +48,48 @@
 	- Parameters: 
 		* contact:Contact
 		* changed:boolean
+		* newObject:boolean
+		* userID:int
 	- Methods:
 		* findById(int id):ContactModel - Static Method
-		* find(int id):ContactModel - Static Method
+		* delete():boolean - if the ContactModel object is deleted successfully it will returns true
+		* save():boolean - if the ContactModel object is saved successfully it will returns true
+		* updated():boolean - if the ContactModel object is updated successfully it will returns true
+		* Setters and getters
 	- ToDo:
-		- Methods
-			* findByUsernameAndPassword(String username, String password):ContactModel - Static Method, returns NULL if not found!
-			* getAllContacts():ArrayList - Returns all the contacts for the contact object
-			* update():boolean  - Update the specific contact
-			* delete():boolean - Delete the specific contact
-			* insert(Contact c):Contact - Static Method - Returns the Contact after Creating it.
-			* Setters And Getters
+		
+		
+== User == 
+	- A class to wrap up the user information 
+	- Parameters:
+		* username:String
+		* password:String
+		* id:int
+	- Methods:
+		* Setters and Getters
+	- ToDo:
+
+
+== UserModel ==
+	- A class to interact with the User table in the database
+	- Parameters:
+		* user:User
+		* changed:boolean
+		* newObject:boolean
+	- Methods:
+		* findByUsernameAndPassword(String username, String password):UserModel
+		* getAllContacts():ArrayList<Contact> (contacts() is an alias to this method)
+		* addContact(Contact contact):boolean
+		* deleteContact(int id):boolean
+		* save():boolean - if the UserModel object is saved successfully it will returns true
+		* update():boolean 
+		* delete():boolean
+		* Getters And Setters 
+	- ToDo:
+		* Methods:
+			* findById():boolean
+
+
 
 
 The server functions in general:
