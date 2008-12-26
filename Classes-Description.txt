@@ -89,8 +89,39 @@
 		* Methods:
 			* findById():boolean
 
+== FLServer ==
+	- A Server Class to listen for the client's requests
+	- Parameters:
+		* PORT:int
+	- Methods:
+		* constructor listenning for requests.
+		
 
 
+== HandleRequest ==
+	- A class to process thr requests done by the client.
+	- Parameters:
+		* socket:Socket
+		* os:DataOutputStream
+		* br:BufferedReader 
+		* loggedUser:UserModel 
+	- Methods:
+		* run():void  - handles the thread
+		* processRequest():void 
+		* determineMessageType(String requestLine):void
+		* checkLogin(String userName , String password, String encr):UserModel 
+		* decryptPassword(String password, String encr):String
+	- ToDo:
+		* At the beginning of the connection : Invoke a login function and a new user option
+		
+	- Notes ******* 
+		* whole check of the code :), in particular:
+			~ check for the exit message type (Logout)
+			~ check for the add new user ===> the adding steps
+		* Do we need to specify why the login was not successful? 
+			~ wrong username password combination
+			~ no such username
+		
 
 The server functions in general:
 

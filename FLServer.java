@@ -31,16 +31,3 @@ public final class FLServer {
 	// }}}
 }
 
-class HandleRequest implements Runnable{
-	private Socket client;
-	
-	public HandleRequest(Socket client){
-		this.client = client;
-	}
-	
-	
-	
-	public void run(){
-		
-	}
-}
