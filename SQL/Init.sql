@@ -1,4 +1,37 @@
-create database FaceLockDB;
+/* Please Use this new SQL Code instead of the old one*/
+create database FaceLockDBSimple;
+use FaceLockDBSimple;
+
+create table User(
+	id 	int primary key AUTO_INCREMENT,
+	username	varchar(250) UNIQUE,
+	password	varchar(250)
+);
+
+
+CREATE TABLE `Contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(250) DEFAULT NULL,
+  `middlename` varchar(250) DEFAULT NULL,
+  `lastname` varchar(250) DEFAULT NULL,
+   Phone 	varchar(100),
+   Address	varchar(100),
+   Email	varchar(100),
+   Icon	int,
+   user_id int,
+  PRIMARY KEY (`id`),
+  foreign key(user_id) references User(id) on delete Cascade on update cascade
+  
+);
+
+
+
+
+
+
+
+/* This is the old sql*/
+/* create database FaceLockDB;
 use FaceLockDB;
 
 create table Country(
@@ -39,5 +72,6 @@ create table Contact(
 );
 
 
-/* Creating FLUser with FLPassword*/
+/* Creating FLUser with FLPassword
 GRANT ALL PRIVILEGES ON *.* TO 'FLUser'@'localhost' IDENTIFIED BY 'FLPassword' WITH GRANT OPTION;
+*/
