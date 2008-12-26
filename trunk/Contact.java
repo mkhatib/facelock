@@ -8,33 +8,75 @@ import java.util.*;
 
 
 public final class Contact {
-    private int id;
+    // Parameters
+	private int id=0;
 	private String firstName,middleName,lastName;
-	private int sex, status;
-	private Address address;
-	private Date birthday;
+	private int icon;
+	private String address, phone, email;
+	
+	// Constructors
 	// {{{ Contact constructor
     /**
      * 
      */
-    public Contact() {
-        
+    public Contact() {        
     }
 	// }}}
-		
-	// Database Constructor
-	public Contact(int id, String fname, String mname, String lname, int sex, Date birthday, Address location, int status){
+	
+	public Contact(int id, String fname, String mname, String lname, String phone, String address, String email, int icon){
 		setID(id);
 		setFirstName(fname);
 		setMiddleName(mname);
 		setLastName(lname);
-		setStatus(status);
-		setAddress(location);
-		setSex(sex);
-		setBirthday(birthday);
-		
+		setPhone(phone);
+		setAddress(address);
+		setEmail(email);
+		setIcon(icon);
 	}
+	// Constructor for new contacts that haven't been saved to the database and got an id yet
+	public Contact(String fname, String mname, String lname, String phone, String address, String email, int icon){
+		this(0,fname,mname,lname,phone,address,email,icon);
+	}
+
+	/*
+	 * toString
+	 *
+	 * @param  
+	 * @return String
+	 */
+	public String toString( ) {
+		return (firstName + " " + middleName + " " + lastName + " - From " + address + " - " + email + " - " + phone);
+	}
+
 	
+	// Setters
+	/**
+	 * setEmail
+	 *
+	 * @param email 
+	 * @return 
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
+	 * setPhone
+	 *
+	 * @param phone 
+	 * @return 
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	/**
+	 * setAddress
+	 *
+	 * @param address 
+	 * @return 
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}	
 	/**
 	 * setID
 	 *
@@ -44,7 +86,6 @@ public final class Contact {
 	public void setID(int id) {
 		this.id = id;
 	}
-	
 	/**
 	 * setFirstName
 	 *
@@ -54,7 +95,6 @@ public final class Contact {
 	public void setFirstName(String fname) {
 		this.firstName = fname;
 	}
-	
 	/**
 	 * setMiddleName
 	 *
@@ -64,7 +104,6 @@ public final class Contact {
 	public void setMiddleName(String mname) {
 		this.middleName = mname;
 	}
-	
 	/**
 	 * setLastName
 	 *
@@ -74,119 +113,86 @@ public final class Contact {
 	public void setLastName(String lname) {
 		this.lastName = lname;
 	}
-	
 	/**
-	 * setBirthday
+	 * setIcon
 	 *
-	 * @param bdate 
+	 * @param icon 
 	 * @return 
 	 */
-	public void setBirthday(Date bdate) {
-		this.birthday = bdate;
+	public void setIcon(int icon) {
+		this.icon = icon;
 	}
-
-	
-	
 	/**
-	 * setSex
-	 *
-	 * @param sex 
-	 * @return 
-	 */
-	public void setSex(int sex) {
-		this.sex = sex;
-	}
-	
-	/**
-	 * setStatus
-	 *
-	 * @param status 
-	 * @return 
-	 */
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	
-	
-	/**
-	 * setAddress
-	 *
-	 * @param add 
-	 * @return 
-	 */
-	public void setAddress(Address add ) {
-		this.address = add;
-	}
-	
-	/**
-	 * getSex
+	 * getID
 	 *
 	 * @param  
-	 * @return sex
+	 * @return int
 	 */
-	public String getSex() {
-		return ((sex==1)?"Male":"Female");
+	public int getID() {
+		return id;
 	}
-
 	/**
-	 * getStatus
-	 *
-	 * @param  
-	 * @return 
-	 */
-	public String getStatus() {
-		switch(status){
-			case 1: return "Single"; 
-			case 2: return "In a Relationship"; 
-			case 3: return "Engaged"; 
-			case 4: return "Married"; 
-			case 5: return "It's Complicated";
-			case 6: return "In An open Relationship";
-			default: return null;
-		}
-	}
-
-	
-	/**
-	 * getAddress
-	 *
-	 * @param  
-	 * @return address
-	 */
-	public Address getAddress( ) {
-		return address;
-	}
-
-	
-	
-
-	
-	/**
-	 * toString
+	 * getFirstName
 	 *
 	 * @param  
 	 * @return String
 	 */
-	public String toString( ) {
-		return (firstName + " " + middleName + " " + lastName + " - " + getAge() + " Year Old - From " + address + " - " + getStatus());
+	public String getFirstName() {
+		return firstName;
 	}
-
-	
-	
 	/**
-	 * getAge
+	 * getMiddleName
+	 *
+	 * @param  
+	 * @return String
+	 */
+	public String getMiddleName() {
+		return middleName;
+	}
+	/**
+	 * getLastName
+	 *
+	 * @param  
+	 * @return String
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+	/**
+	 * getIcon
+	 *
+	 * @param  
+	 * @return int
+	 */
+	public int getIcon() {
+		return icon;
+	}
+	// Getters 
+	/**
+	 * getEmail
 	 *
 	 * @param  
 	 * @return 
 	 */
-	public int getAge() {
-		Date now = new Date();
-		int age = (now.getYear() - birthday.getYear());
-		Date newDate = (Date)birthday.clone();
-		newDate.setYear(now.getYear()+age);
-		return ((now.before(newDate)) ? age : age-1);
+	public String getEmail() {
+		return email;
 	}
-	
-
-	// Numbers in Words
+	/**
+	 * getPhone
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public String getPhone() {
+		return phone;
+	}
+	/**
+	 * getAddress
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public String getAddress() {
+		return address;
+	}
 }
