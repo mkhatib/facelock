@@ -1,13 +1,17 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 /**
  * <<Class summary>>
  *
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
-public final class FaceLock extends JFrame {
+public final class FaceLock extends JFrame implements ActionListener{
 	// Constants
+	// Model 
+	private FLClient model = new FLClient();
+	
 	// Dimension of the GUI Frame
 	private Dimension dimensions = new Dimension(300,500);
 	// A Helper Class to enable the JList rendering the Icons besides the names
@@ -18,6 +22,8 @@ public final class FaceLock extends JFrame {
 	private JList contactList = new JList(listModel);
 	// The Toolbar buttons (add, delete, edit ...etc)
 	private JToolBar toolbar = new FLToolBar();
+	// Login Panel
+	private FaceLockLoginPanel loginPanel = new FaceLockLoginPanel(model);
 	
 	
 	// {{{ FaceLock constructor
@@ -26,7 +32,7 @@ public final class FaceLock extends JFrame {
      */
     public FaceLock() {
         super("FaceLock!");
-		
+		model.addActionListener(this);
 		
 		// Adding Some Demo Records.
 		listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Cool.png"), "Mohammad N. Khatib"});
@@ -41,7 +47,8 @@ public final class FaceLock extends JFrame {
 		contactList.setCellRenderer(contactListCellRenderer);
 		
 		// Add the contact list to the center of the panel with JScrollPane to enable Scrolling
-		add(new JScrollPane(contactList));
+		//add(new JScrollPane(contactList));
+		add(loginPanel);
 		// Add the ToolBar to the North of the Panel
 		add(toolbar, BorderLayout.NORTH);
 		
@@ -56,6 +63,16 @@ public final class FaceLock extends JFrame {
     }
 	// }}}
 	
+	/**
+	 * actionPerformed
+	 *
+	 * @param e 
+	 * @return 
+	 */
+	public void actionPerformed(ActionEvent e) {
+		
+	}
+
 	
 	
 	
