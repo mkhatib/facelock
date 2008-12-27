@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 /**
  * Wrap up Contact Information 
@@ -7,7 +8,7 @@ import java.util.*;
  */
 
 
-public final class Contact {
+public final class Contact implements Serializable{
     // Parameters
 	private int id=0;
 	private String firstName,middleName,lastName;
