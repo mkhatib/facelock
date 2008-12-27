@@ -51,8 +51,10 @@ public final class FLClient {
 					contacts.add(c);
 					System.out.println(c);
 				}	
-				/*
+					
 				// Add Contact
+				//To add for the add contatc button an action listener which guid to add contact window as following:
+				/*
 				action = 'A';
 				String firstName = "Ramiz";
 				String middleName = "Isa";

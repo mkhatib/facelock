@@ -99,7 +99,7 @@
 
 
 == HandleRequest ==
-	- A class to process thr requests done by the client.
+	- A class to process the requests done by the client.
 	- Parameters:
 		* socket:Socket
 		* os:DataOutputStream
