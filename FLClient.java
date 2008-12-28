@@ -212,6 +212,7 @@ public final class FLClient {
 			boolean loggedOut = (Boolean)ois.readObject();
 			if(loggedOut){
 				System.out.println("Logged Out Successfully!");	
+				contacts.clear();
 				notifyListeners(new ActionEvent(this,0,"Logout Succeeded"));
 				return true;
 			} 

@@ -85,14 +85,25 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		{
 			setSize(700,500);
 			System.out.println("LOOOOOOOOOOOOOOOOOOOOGIN!");
-			listModel.clear();
-			contactList.removeAll();
-			contactList.setModel(listModel);
+			//listModel.clear();
+			//contactList.removeAll();
+			//for(int i=0; i < listModel.getSize(); i++)
+			//	listModel.remove(i);
+			//contactList.setModel(listModel);
 			//contactList = new JList(listModel);
-			scrollPane = new JScrollPane(contactList);
+			//scrollPane = new JScrollPane(contactList);
+			/*listModel = new DefaultListModel();
+						contactList = new JList(listModel);	
+						scrollPane = new JScrollPane(contactList);
+						contactList.setCellRenderer(contactListCellRenderer);
+						
+						contactList.validate();
+						*/
 			ArrayList<Contact> contacts = model.getContacts();
 			for(int i=0; i < contacts.size(); i++)
 				listModel.addElement(contacts.get(i));
+			contactList.validate();
+			
 			if(contacts.size() > 0)
 				infoPanel.setContact(contacts.get(0));
 			else
@@ -103,17 +114,31 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			container.add(scrollPane, BorderLayout.WEST);
 			container.add(infoPanel);
 			add(container);
+			contactList.validate();
+			contactList.repaint();
 			validate();
+			
 		}
 		else if(action.equals("Logout Succeeded")){
+			//listModel = new DefaultListModel();
+			//for(int i=0; i < listModel.getSize(); i++)
+			//	listModel.removeElement(listModel.getElementAt(i));
+				
 			listModel.clear();
-			contactList.removeAll();
-			listModel = new DefaultListModel();
+			//contactList.removeAll();
+			
+			//int selectedIndex = contactList.getSelectedIndex();
+			
+			//contactList.setSelectedIndex(0);
+			
+				
+			//contactList.validate();
 			remove(container);
-			validate();
+			//validate();
 			container = new JPanel(new BorderLayout());
 			container.add(loginPanel);
 			add(container);
+			
 			validate();
 		}
 		else if(action.equals("Updated Successfully") || action.equals("Added Successfully")){
