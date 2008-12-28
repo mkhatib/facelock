@@ -48,7 +48,18 @@ public final class Contact implements Serializable{
 	public String toString( ) {
 		return (firstName + " " + middleName + " " + lastName + " - From " + address + " - " + email + " - " + phone);
 	}
+	
+	/**
+	 * getFullName
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public String getFullName() {
+		return (firstName + " " + middleName + " " + lastName);
+	}
 
+	
 	
 	// Setters
 	/**

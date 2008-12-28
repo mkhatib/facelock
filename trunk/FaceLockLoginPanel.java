@@ -14,7 +14,7 @@ public final class FaceLockLoginPanel extends JPanel implements ActionListener {
 	private JButton registerBtn = new JButton("Register");
 	private JLabel usernameLbl = new JLabel("Username", JLabel.TRAILING);
 	private JLabel passwordLbl = new JLabel("Password", JLabel.TRAILING);
-	FLClient model;
+	private FLClient model;
 	// {{{ FaceLockLoginPanel constructor
     /**
      * 

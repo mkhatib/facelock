@@ -75,6 +75,8 @@ public class HandleRequest implements Runnable{
 						for(int k = 0 ; k< contactList.size() ; k++) // Not .length() it's .size()
 						{
 							//os.writeByte(contactList.get(k).getID()); // Why U R writing the ID! We need the whole Contact
+							System.out.println("ID SENT: " + contactList.get(k).getID());
+							
 							oos.writeObject(contactList.get(k));
 						}
 						// Finish Sending!
