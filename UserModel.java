@@ -71,7 +71,7 @@ public final class UserModel extends FaceLockModel{
 			ResultSet r = s.executeQuery("select C.* from Contact C where C.user_id="+id);
 			while(r.next()){
 				// Create New Contact Per Each Row in the ResultSet and Add it to the contactList
-				Contact c =  new Contact(id,r.getString("firstname"), r.getString("middlename"), r.getString("lastname"), r.getString("Phone"), r.getString("Address"), r.getString("Email"),r.getInt("Icon"));
+				Contact c =  new Contact(r.getInt("id"),r.getString("firstname"), r.getString("middlename"), r.getString("lastname"), r.getString("Phone"), r.getString("Address"), r.getString("Email"),r.getInt("Icon"));
 				contactList.add(c);
 			}
 		} catch (Exception e) {

@@ -36,6 +36,9 @@ public final class FLClient {
 	 */
 	public boolean login(String username, String password) {
 		try {
+			Socket client = new Socket(IP, port);
+			oos = new ObjectOutputStream(client.getOutputStream());
+	        ois = new ObjectInputStream(client.getInputStream());
 			char action = 'L';
 			int salt = (int)Math.random()*25;
 			String encryptedPassword = "";
@@ -51,6 +54,8 @@ public final class FLClient {
 				for(int i= 0; i < numOfContacts; i++)
 				{
 					Contact c = (Contact)ois.readObject();
+					System.out.println("ID GET" + c.getID());
+					
 					contacts.add(c);
 					System.out.println(c);
 				}	
@@ -74,6 +79,10 @@ public final class FLClient {
 	 */
 	public int register(String username, String password, String repassword) {
 		try {
+			Socket client = new Socket(IP, port);
+			oos = new ObjectOutputStream(client.getOutputStream());
+	        ois = new ObjectInputStream(client.getInputStream());
+			
 			int salt = (int)Math.random()*25;
 			char action = 'N';
 			String encryptedPassword="",encryptedRePassword="";
@@ -105,6 +114,7 @@ public final class FLClient {
 			if(newContact != null){
 				contacts.add(newContact);
 				System.out.println("Contact Added Successfully!");
+				notifyListeners(new ActionEvent(this,0,"Added Successfully"));
 				return true;
 			}
 			else 
@@ -135,6 +145,7 @@ public final class FLClient {
 				for(int i=0; i < contacts.size(); i++)
 					if(contacts.get(i).getID() == contactID){
 						contacts.remove(i);
+						notifyListeners(new ActionEvent(this,contactID,"Deleted Successfully"));
 						return true;
 						//break;
 					}
@@ -163,7 +174,20 @@ public final class FLClient {
 						" " + phone.replaceAll(" ", "%s") + " " + address.replaceAll(" ", "%s") + " " + email.replaceAll(" ", "%s") + " " + icon);
 			boolean updated = (Boolean)ois.readObject();
 			if(updated){
+				Contact con = null;
+				for(int i=0; i < contacts.size(); i++)
+					if((con = contacts.get(i)).getID() == contactID){
+						con.setFirstName(firstName);
+						con.setLastName(lastName);
+						con.setMiddleName(middleName);
+						con.setPhone(phone);
+						con.setAddress(address);
+						con.setEmail(email);
+						con.setIcon(icon);
+						break;
+					}
 				System.out.println("Contact Updated Successfully!");
+				notifyListeners(new ActionEvent(this,contactID,"Updated Successfully"));
 				return true;
 			}
 			else System.out.println("Update Faild!");
@@ -188,6 +212,7 @@ public final class FLClient {
 			boolean loggedOut = (Boolean)ois.readObject();
 			if(loggedOut){
 				System.out.println("Logged Out Successfully!");	
+				notifyListeners(new ActionEvent(this,0,"Logout Succeeded"));
 				return true;
 			} 
 			else System.out.println("Faild To Logout!");
@@ -219,12 +244,17 @@ public final class FLClient {
      * 
      */
     public FLClient() {
-        try {
-			Socket client = new Socket(IP, port);
-			oos = new ObjectOutputStream(client.getOutputStream());
-            ois = new ObjectInputStream(client.getInputStream());
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
     }
+
+	/**
+	 * getContacts
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public ArrayList<Contact> getContacts() {
+		return contacts;
+	}
+
+	
 }
