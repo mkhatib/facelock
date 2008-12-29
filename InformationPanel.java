@@ -9,6 +9,7 @@ import javax.swing.border.*;
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
+ 
 public final class InformationPanel extends JPanel implements ActionListener {
     private FLClient model;
 	private Contact currentContact;
@@ -40,39 +41,10 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	//private GroupLayout layout = new GroupLayout(this);
 	private boolean isNew = false;
 	// {{{ InformationPanel constructor
-    /**
-     * 
-     */
+
     public InformationPanel(FLClient model) {
         this.model = model;
 		setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Contact Information"),new EmptyBorder(10,50,10,50)));
-		
-		/*setLayout(layout);
-				layout.setAutoCreateGaps(true);
-				layout.setAutoCreateContainerGaps(true);
-				layout.setHorizontalGroup(
-				   layout.createSequentialGroup()
-				      .addComponent(firstNameTF)
-				      .addComponent(middleNameTF)
-					  .addComponent(lastNameTF)
-				      
-				);
-				*/
-		
-		
-		/*JPanel row1 = new JPanel(new FlowLayout());
-				
-				//setLayout(new FlowLayout());
-				row1.add(firstNameTF);
-				row1.add(middleNameTF);
-				row1.add(lastNameTF);
-				setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-				add(row1);
-				
-				JPanel row2 = new JPanel(new FlowLayout());
-				row2.add(phoneLbl);
-				row2.add(phoneTF);
-				add(row2);*/
 		
 		setLayout(new GridLayout(8,2,1,1));
 		add(firstNameLbl);
@@ -106,16 +78,6 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		
 		cancelBtn.addActionListener(this);
 		saveBtn.addActionListener(this);
-				
-		/*add(Box.createHorizontalGlue());
-		add(phoneLbl);
-		add(phoneTF);
-		add(Box.createHorizontalGlue());
-		add(addressLbl);
-		add(addressTF);
-		add(Box.createHorizontalGlue());
-		*/
-		//add(Box.createRigidArea(new Dimension(0,400)));
 
     }
 	public InformationPanel(FLClient model, Contact contact) {
@@ -125,8 +87,6 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		updateFields();
 		
     }
-	// }}}
-	
 	
 	/**
 	 * updateFields
@@ -166,7 +126,6 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	public Contact getContact() {
 		return currentContact;
 	}
-
 	
 	/**
 	 * setSelectedIndex
@@ -188,8 +147,6 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		return selectedIndex;
 	}
 
-	
-	
 	/**
 	 * newContact
 	 *
@@ -207,7 +164,6 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		isNew = true;	
 	}
 
-	
 	/**
 	 * actionPerformed
 	 *

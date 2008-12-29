@@ -17,7 +17,6 @@ public class ContactListCellRenderer implements ListCellRenderer {
 	private Border emptyBorder = BorderFactory.createEmptyBorder(2,2,2,2);
 
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
-		/*Object[] pair = (Object[])value;*/
 		Contact obj = (Contact)value;
 		
 		label.setOpaque(true);
@@ -37,17 +36,8 @@ public class ContactListCellRenderer implements ListCellRenderer {
 		
 		return label;
 	}
-	
-	
 
-	
-	
-	// {{{ ContactList constructor
-    /**
-     * 
-     */
     public ContactListCellRenderer() {
         
     }
-	// }}}
 }

@@ -7,18 +7,14 @@
 public final class Address {
 	// Attributes
     private String city,country,town,street;
-	// {{{ Address constructor
-    /**
-     * 
-     */
+	
     public Address(String country, String city, String town, String street) {
         this.city = city;
 		this.country = country;
 		this.town = town;
 		this.street = street;
     }
-	// }}}
-	
+
 	/**
 	 * toString
 	 *

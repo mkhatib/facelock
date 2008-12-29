@@ -4,14 +4,12 @@
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
+ 
 public final class User {
     private String username;
 	private String password;
 	private int id;
-	// {{{ User constructor
-    /**
-     * 
-     */
+
     public User(int id, String username,String password) {
         setUsername(username);
 		setPassword(password);
@@ -27,10 +25,7 @@ public final class User {
         setUsername(username);
 		setID(id);
     }
-	// }}}
-	
-	
-	
+
 	/**
 	 * setUsername
 	 *
@@ -100,9 +95,4 @@ public final class User {
 	public String toString() {
 		return username;
 	}
-
-	
-	
-
-	
 }

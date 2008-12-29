@@ -1,23 +1,13 @@
 import java.net.*;
 /**
- * <<Class summary>>
- *
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
 public final class FLServer {
-   
-	//private String IP = "localhost";
 	private static int PORT = 7488;
-	// {{{ FLServer constructor
-    /**
-     * 
-     */
-    public FLServer() {
-        
-		
+    
+	public FLServer() {
     }
-	// }}}
 	
 	public static void main(String[] args) {
 		try{

@@ -69,7 +69,6 @@ public class HandleRequest implements Runnable{
 					loggedUser = userModel; //new UserModel(userModel.getUser()); // No Need to create another model u already have it
 					ArrayList<Contact> contactList = loggedUser.getAllContacts();
 					// Login Successful
-						//oos.writeObject(userModel.getUser());
 						oos.writeObject(contactList.size());
 						// send the list of contacts to the client 
 						for(int k = 0 ; k< contactList.size() ; k++) // Not .length() it's .size()
@@ -80,16 +79,10 @@ public class HandleRequest implements Runnable{
 							oos.writeObject(contactList.get(k));
 						}
 						// Finish Sending!
-						//oos.writeObject(null);
 				}
 				else // if the login was not successful ==> username and password wrong 
 					  // do we want to specify , wrong match of username and password , OR the username doesn't exist??
 				{
-					//String wrongLogin = "Wrong UserName and Password";
-					//os.writeBytes(wrongLogin);
-					//oos.writeBytes(wrongLogin);
-					// or 
-					//os.writeBoolean(false);
 					oos.writeObject(-1);
 				}
 			}

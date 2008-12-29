@@ -1,10 +1,11 @@
 import java.sql.*;
+
 /**
  * This model will talk to the database and get whatever information about a contact
  *
  * @author Mohammad Khatib &lt;&gt;
- * @version $Rev$
  */
+ 
 public class FaceLockModel {
     private final String DRIVER_NAME = "com.mysql.jdbc.Driver";//"org.gjt.mm.mysql.Driver";
 	private final String SERVER = "localhost";
@@ -14,10 +15,7 @@ public class FaceLockModel {
 	private final String JDBC_URL = "jdbc:mysql://" + SERVER + ":3306/" + DATABASE_NAME;
 	
 	protected static Connection connection;
-	// {{{ FaceLockModel constructor
-    /**
-     * 
-     */
+
     public FaceLockModel() {
         try {
 			Class.forName(DRIVER_NAME);
@@ -30,6 +28,5 @@ public class FaceLockModel {
 			e.printStackTrace();
         }
     }
-	// }}}
 }
 

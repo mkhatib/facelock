@@ -8,6 +8,7 @@ import java.awt.event.*;
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
+ 
 public final class FLClient {
     private  String IP = "localhost";
 	private int port = 7488;
@@ -16,8 +17,7 @@ public final class FLClient {
 	private ArrayList<Contact> contacts = new ArrayList<Contact>();
 	
 	private ArrayList<ActionListener> listeners = new ArrayList<ActionListener>();
-	
-	
+
 	/**
 	 * addActionListener
 	 *
@@ -134,7 +134,6 @@ public final class FLClient {
 		return false;
 	}
 
-	
 	/**
 	 * deleteContact
 	 *
@@ -203,7 +202,6 @@ public final class FLClient {
 		return false;
 	}
 
-	
 	/**
 	 * logout
 	 *
@@ -227,8 +225,6 @@ public final class FLClient {
 		} 
 		return false;
 	}
-	
-	
 	
 	/**
 	 * sort
@@ -363,8 +359,6 @@ public final class FLClient {
 		return true;
 	}
 
-	
-	
 	/**
 	 * notiftListeners
 	 *
@@ -380,11 +374,7 @@ public final class FLClient {
 		for (int i=0; i<listenersCopy.size(); i++)
 			listenersCopy.get(i).actionPerformed(e);
 	}
-	
-	// {{{ FLClient constructor
-    /**
-     * 
-     */
+
     public FLClient() {
     }
 
@@ -397,7 +387,6 @@ public final class FLClient {
 	public ArrayList<Contact> getContacts() {
 		return contacts;
 	}
-
 
 	/**
 	 * setHostServer
