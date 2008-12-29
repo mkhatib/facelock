@@ -1,6 +1,6 @@
 import java.sql.*;
 import java.util.*;
-import com.mysql.jdbc.exceptions.*;
+//import com.mysql.jdbc.exceptions.*;
 /**
  * Interact with the database User Table
  *
@@ -166,7 +166,7 @@ public final class UserModel extends FaceLockModel{
 				return true;
 			}
 			return false;
-		} catch(MySQLIntegrityConstraintViolationException e){
+		} catch(SQLException e){
 			System.out.println("Username already Taken!");
 			
 		} catch (Exception e) {
