@@ -220,15 +220,18 @@ public final class InformationPanel extends JPanel implements ActionListener {
 			if(!validateFields()){
 				JOptionPane.showMessageDialog(null, "Please Fill All the Fields!", "Error!", JOptionPane.ERROR_MESSAGE);
 			}
-			if(isNew){
-				boolean saved =  model.addContact(firstNameTF.getText(),middleNameTF.getText(),lastNameTF.getText(), phoneTF.getText(), addressTF.getText(), emailTF.getText(), iconCB.getSelectedIndex() );
-				if(!saved) JOptionPane.showMessageDialog(null, "Contact Was Not Saved! Please Try Again!", "Not Saved!", JOptionPane.ERROR_MESSAGE);
-			}
 			else
 			{
-				boolean updated = model.updateContact(currentContact.getID(),firstNameTF.getText(),middleNameTF.getText(),lastNameTF.getText(), phoneTF.getText(), addressTF.getText(), emailTF.getText(), iconCB.getSelectedIndex() );
-				if (!updated) JOptionPane.showMessageDialog(null, "Contact Was Not Saved! Please Try Again!", "Not Saved!", JOptionPane.ERROR_MESSAGE);
-			}	
+				if(isNew){
+					boolean saved =  model.addContact(firstNameTF.getText(),middleNameTF.getText(),lastNameTF.getText(), phoneTF.getText(), addressTF.getText(), emailTF.getText(), iconCB.getSelectedIndex() );
+					if(!saved) JOptionPane.showMessageDialog(null, "Contact Was Not Saved! Please Try Again!", "Not Saved!", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					boolean updated = model.updateContact(currentContact.getID(),firstNameTF.getText(),middleNameTF.getText(),lastNameTF.getText(), phoneTF.getText(), addressTF.getText(), emailTF.getText(), iconCB.getSelectedIndex() );
+					if (!updated) JOptionPane.showMessageDialog(null, "Contact Was Not Saved! Please Try Again!", "Not Saved!", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 		else if(action.equals("Cancel")){
 			updateFields();
@@ -244,6 +247,7 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	public boolean validateFields() {
 		if(firstNameTF.getText().trim().length() == 0 ) return false;
 		if(middleNameTF.getText().trim().length() == 0 ) return false;
+		if(lastNameTF.getText().trim().length() == 0 ) return false;
 		if(phoneTF.getText().trim().length() == 0 ) return false;
 		if(addressTF.getText().trim().length() == 0 ) return false;
 		if(emailTF.getText().trim().length() == 0 ) return false;

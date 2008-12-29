@@ -26,6 +26,8 @@ CREATE TABLE `Contact` (
 
 
 
+GRANT ALL PRIVILEGES ON *.* TO 'FLUser'@'localhost' IDENTIFIED BY 'FLPassword' WITH GRANT OPTION;
+
 
 
 
