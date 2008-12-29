@@ -157,7 +157,10 @@ public class HandleRequest implements Runnable{
 			}	
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+				
+			} catch(Exception e){
+				
+			}
 				
 	}
 		

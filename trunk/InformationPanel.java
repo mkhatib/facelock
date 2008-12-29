@@ -12,7 +12,7 @@ import javax.swing.border.*;
 public final class InformationPanel extends JPanel implements ActionListener {
     private FLClient model;
 	private Contact currentContact;
-	
+	private int selectedIndex=0;
 	// Fields 
 	private JTextField firstNameTF = new JTextField(15);
 	private JTextField middleNameTF = new JTextField(15);
@@ -32,12 +32,12 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	private JLabel iconLbl = new JLabel("Icon");
 	
 	// Buttons
-	private JButton saveBtn = new JButton("Save");
+	private JButton saveBtn = new JButton("Save" ,new ImageIcon("Images/Icons/ok.png"));
 	private JButton updateBtn = new JButton("Update");
-	private JButton cancelBtn = new JButton("Cancel");
+	private JButton cancelBtn = new JButton("Cancel", new ImageIcon("Images/Icons/cancel.png"));
 	
 	// Layout
-	private GroupLayout layout = new GroupLayout(this);
+	//private GroupLayout layout = new GroupLayout(this);
 	private boolean isNew = false;
 	// {{{ InformationPanel constructor
     /**
@@ -45,7 +45,7 @@ public final class InformationPanel extends JPanel implements ActionListener {
      */
     public InformationPanel(FLClient model) {
         this.model = model;
-		setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Contact Information"),new EmptyBorder(20,50,20,50)));
+		setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Contact Information"),new EmptyBorder(10,50,10,50)));
 		
 		/*setLayout(layout);
 				layout.setAutoCreateGaps(true);
@@ -73,8 +73,8 @@ public final class InformationPanel extends JPanel implements ActionListener {
 				row2.add(phoneLbl);
 				row2.add(phoneTF);
 				add(row2);*/
-				
-		setLayout(new GridLayout(8,2,7,7));
+		
+		setLayout(new GridLayout(8,2,1,1));
 		add(firstNameLbl);
 		add(firstNameTF);
 		
@@ -169,6 +169,28 @@ public final class InformationPanel extends JPanel implements ActionListener {
 
 	
 	/**
+	 * setSelectedIndex
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public void setSelectedIndex(int index ) {
+		this.selectedIndex = index;
+	}
+
+	/**
+	 * getSelectedIndex
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public int getSelectedIndex() {
+		return selectedIndex;
+	}
+
+	
+	
+	/**
 	 * newContact
 	 *
 	 * @param  
@@ -195,6 +217,9 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e ) {
 		String action = e.getActionCommand();
 		if(action.equals("Save")){
+			if(!validateFields()){
+				JOptionPane.showMessageDialog(null, "Please Fill All the Fields!", "Error!", JOptionPane.ERROR_MESSAGE);
+			}
 			if(isNew){
 				boolean saved =  model.addContact(firstNameTF.getText(),middleNameTF.getText(),lastNameTF.getText(), phoneTF.getText(), addressTF.getText(), emailTF.getText(), iconCB.getSelectedIndex() );
 				if(!saved) JOptionPane.showMessageDialog(null, "Contact Was Not Saved! Please Try Again!", "Not Saved!", JOptionPane.ERROR_MESSAGE);
@@ -210,5 +235,21 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		}
 	}
 
+	/**
+	 * validateFields
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public boolean validateFields() {
+		if(firstNameTF.getText().trim().length() == 0 ) return false;
+		if(middleNameTF.getText().trim().length() == 0 ) return false;
+		if(phoneTF.getText().trim().length() == 0 ) return false;
+		if(addressTF.getText().trim().length() == 0 ) return false;
+		if(emailTF.getText().trim().length() == 0 ) return false;
+	}
+
+	
+	
 	
 }

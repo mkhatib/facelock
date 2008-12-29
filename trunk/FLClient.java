@@ -40,9 +40,14 @@ public final class FLClient {
 			oos = new ObjectOutputStream(client.getOutputStream());
 	        ois = new ObjectInputStream(client.getInputStream());
 			char action = 'L';
-			int salt = (int)Math.random()*25;
+			Random random = new Random();
+			int salt = random.nextInt(25)+1;
+			System.out.println("SALT::" + salt);
+			
 			String encryptedPassword = "";
 			for(int i=0; i<password.length(); i++) encryptedPassword += (char)(password.charAt(i) + salt);
+			System.out.println("encryptedPassword::" + encryptedPassword);
+			
 			oos.writeObject(action + " " + username + " " + encryptedPassword + " " + salt);
 
 			int numOfContacts = (Integer)ois.readObject();
@@ -224,6 +229,142 @@ public final class FLClient {
 	}
 	
 	
+	
+	/**
+	 * sort
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public void sort(int by, int order ) {
+		switch(by)
+		{
+			case 0: Collections.sort(contacts, new IDComparator()); break;
+			case 1: Collections.sort(contacts, new FirstNameComparator()); break;
+			case 2: Collections.sort(contacts, new MiddleNameComparator()); break;
+			case 3: Collections.sort(contacts, new LastNameComparator()); break;
+			case 4: Collections.sort(contacts, new PhoneComparator()); break;
+			case 5: Collections.sort(contacts, new AddressComparator()); break;
+			case 6: Collections.sort(contacts, new EmailComparator()); break;
+			case 7: Collections.sort(contacts, new IconComparator()); break;
+		}
+		if(order == 1) Collections.reverse(contacts);
+		notifyListeners(new ActionEvent(this,0,"Sorted Successfully"));
+	}
+
+	/**
+	 * search
+	 *
+	 * @param key 
+	 * @return 
+	 */
+	public boolean search(String key, int by, int from) {
+		int pos = -1;
+		from++;
+		from = (from % contacts.size());
+		switch(by)
+		{
+			case 0:  
+
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					System.out.println("Searching: " + (key) + " == " + contacts.get(i).getID());
+					
+					if(contacts.get(i).getID() == Integer.parseInt(key)){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+				break;//case 0: sort(0,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, Integer.parseInt(key), new IDComparator()); break;       
+			case 1: 
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).getFirstName().indexOf(key) != -1){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+			 	break;//case 1: sort(1,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, key/*, new FirstNameComparator()*/); break;       
+			case 2: 
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).getMiddleName().indexOf(key) != -1){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+			 	break;//case 2: sort(2,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, key/*, new MiddleNameComparator())*/; break;       
+			case 3:  
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).getLastName().indexOf(key) != -1){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+				break;//case 3: sort(3,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, key/*, new LastNameComparator()*/); break;       
+			case 4:  
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).getPhone().indexOf(key) != -1){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+				break;//case 4: sort(4,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, key/*, new PhoneComparator()*/); break;       
+			case 5:  
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).getAddress().indexOf(key) != -1){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+				break;//case 5: sort(5,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, key/*, new AddressComparator()*/); break;       
+			case 6:  
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).getEmail().indexOf(key) != -1){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+				break;//case 6: sort(6,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, key/*, new EmailComparator()*/); break;       
+			case 7:  
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).getIcon() == Integer.parseInt(key)){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+				break;//case 7: sort(7,0); pos = Collections.binarySearch(contacts/*.subList(from,contacts.size())*/, key/*, new IconComparator()*/); break;       
+			default:
+				for(int i=from,  j=0; j < contacts.size(); j++ ){
+					if(contacts.get(i).toString().indexOf(key) != -1){
+						pos = i;
+						break;
+					}
+					i++;
+					i = (i % contacts.size());
+				}
+		}
+		//System.out.println("SEARCH: " + pos);
+		if (pos == -1) return false;
+		notifyListeners(new ActionEvent(this, pos/*+from*/, "Search Done"));
+		return true;
+	}
+
+	
+	
 	/**
 	 * notiftListeners
 	 *
@@ -257,5 +398,201 @@ public final class FLClient {
 		return contacts;
 	}
 
+
+	/**
+	 * setHostServer
+	 *
+	 * @param server 
+	 * @return 
+	 */
+	public void setHostServer(String server) {
+		this.IP = server;
+	}
 	
+	/**
+	 * setHostPort
+	 *
+	 * @param port 
+	 * @return 
+	 */
+	public void setHostPort(int port) {
+		this.port = port;
+	}
+	
+	/**
+	 * getHostServer
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public String getHostServer() {
+		return IP;
+	}
+	
+	/**
+	 * getHostPort
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public int getHostPort() {
+		return port;
+	}
 }
+
+// Comparators
+
+class IDComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			Integer messageSubject1 = ((Contact)messageWrapper1).getID();
+			Integer messageSubject2 = ((Contact)messageWrapper2).getID();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+class FirstNameComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			String messageSubject1 = ((Contact)messageWrapper1).getFirstName();
+			String messageSubject2 = ((Contact)messageWrapper2).getFirstName();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+class MiddleNameComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			String messageSubject1 = ((Contact)messageWrapper1).getMiddleName();
+			String messageSubject2 = ((Contact)messageWrapper2).getMiddleName();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+class LastNameComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			String messageSubject1 = ((Contact)messageWrapper1).getLastName();
+			String messageSubject2 = ((Contact)messageWrapper2).getLastName();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+class PhoneComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			String messageSubject1 = ((Contact)messageWrapper1).getPhone();
+			String messageSubject2 = ((Contact)messageWrapper2).getPhone();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+
+class AddressComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			String messageSubject1 = ((Contact)messageWrapper1).getAddress();
+			String messageSubject2 = ((Contact)messageWrapper2).getAddress();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+class EmailComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			String messageSubject1 = ((Contact)messageWrapper1).getEmail();
+			String messageSubject2 = ((Contact)messageWrapper2).getEmail();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+class IconComparator implements Comparator
+{
+	public int compare(Object messageWrapper1, Object messageWrapper2)
+	{
+		try
+		{
+			Integer messageSubject1 = ((Contact)messageWrapper1).getIcon();
+			Integer messageSubject2 = ((Contact)messageWrapper2).getIcon();
+			if (messageSubject1 == null)
+				return -1;
+			else
+				return messageSubject1.compareTo(messageSubject2);
+		}
+		catch (Exception e)
+		{
+			return 0;
+		}
+	}
+}
+

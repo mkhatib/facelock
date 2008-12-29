@@ -134,10 +134,11 @@ public final class UserModel extends FaceLockModel{
 				return true;
 			}
 			return false;
-		} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+		} catch(/*com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException*/ SQLException e){
 			System.out.println("Username already Taken!");
 			
 		}catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		return false;

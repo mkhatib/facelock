@@ -39,6 +39,9 @@ public final class Contact implements Serializable{
 		this(0,fname,mname,lname,phone,address,email,icon);
 	}
 
+
+
+	
 	/*
 	 * toString
 	 *
