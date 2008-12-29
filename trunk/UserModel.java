@@ -1,28 +1,25 @@
 import java.sql.*;
 import java.util.*;
-//import com.mysql.jdbc.exceptions.*;
+
 /**
  * Interact with the database User Table
  *
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
+ 
 public final class UserModel extends FaceLockModel{
     private User user;
 	// Flag to check whether the object has been changed
 	private boolean changed=false;
 	// Flag to check whether the object is already saved in the database or not
 	private boolean isNew=false;
-	
-	// {{{ UserModel constructor
-    /**
-     * 
-     */
+
     public UserModel() {
 		// Initialize the connection
         super();
     }
-	// }}}
+	
 	public UserModel(User u){
 		this.user = u;
 		isNew = true;
@@ -111,7 +108,6 @@ public final class UserModel extends FaceLockModel{
 		return (cm != null && cm.delete());
 	}
 	
-	
 	/**
 	 * save
 	 *
@@ -175,7 +171,6 @@ public final class UserModel extends FaceLockModel{
 		return false;
 	}
 
-	
 	/**
 	 * delete
 	 *
@@ -202,9 +197,6 @@ public final class UserModel extends FaceLockModel{
 		return false;
 	}
 
-	
-	
-	
 	// Just for testing! 
 	public static void main(String[] args) {
 		// Login
@@ -280,10 +272,7 @@ public final class UserModel extends FaceLockModel{
 		}
 		
 	}
-	
-	
-	
-	
+
 	/**
 	 * setUser
 	 *
@@ -293,6 +282,7 @@ public final class UserModel extends FaceLockModel{
 	public void setUser(User u){
 		this.user = u;
 	}
+	
 	/**
 	 * setUsername
 	 *
@@ -304,6 +294,7 @@ public final class UserModel extends FaceLockModel{
 		user.setUsername(username);
 		changed = true;
 	}
+	
 	/**
 	 * setPassword
 	 *
@@ -346,8 +337,5 @@ public final class UserModel extends FaceLockModel{
 	public User getUser() {
 		return user;
 	}
-	
-	
-	
 }
 

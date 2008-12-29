@@ -16,12 +16,7 @@ public final class ContactModel extends FaceLockModel{
 	private boolean isNew=false;
 	// For whose this contact belong to any user?
 	private int userID = 0;
-	
-	// Constructors
-	// {{{ ContactModel constructor
-    /**
-     * This is the default constructor
-     */
+
     public ContactModel() {
 		// Call the FaceLockModel constructor to initialize the connection of the database
         super();
@@ -38,9 +33,7 @@ public final class ContactModel extends FaceLockModel{
         this(contact);
 		userID = pid;
     }
-	// }}}
-	
-	// Getters
+
 	/**
 	 * getContact
 	 *
@@ -61,6 +54,7 @@ public final class ContactModel extends FaceLockModel{
 	public void setContact(Contact  contact) {
 		this.contact = contact;
 	}
+	
 	/**
 	 * setUserID
 	 *
@@ -83,13 +77,11 @@ public final class ContactModel extends FaceLockModel{
 		ContactModel c = new ContactModel();
 		try {
 			Statement s = connection.createStatement();
-			// ResultSet r = s.executeQuery("select C.*,CO.name,Ci.name,T.name, A.street from Contact C,Address A, Country CO, City Ci, Town T where A.id=C.location and A.town_id=T.id and T.city_id=Ci.id and Ci.country_id=Co.id and C.id="+id);
+			
 			ResultSet r = s.executeQuery("select C.* from Contact C where C.id="+id);
 			// If there's such a Contact
 			if(r.next())
 			{
-				//Address add = new Address(r.getString(10),r.getString(11),r.getString(12),r.getString(13));
-				//contact =  (new Contact(id,r.getString("firstname"), r.getString("middlename"), r.getString("lastname"), r.getInt("sex"), r.getDate("birthday"), add,r.getInt("status")));
 				contact =  new Contact(id,r.getString("firstname"), r.getString("middlename"), r.getString("lastname"), r.getString("Phone"), r.getString("Address"), r.getString("Email"),r.getInt("Icon"));
 				c.setContact(contact);
 				c.setUserID(r.getInt("user_id"));
@@ -190,6 +182,7 @@ public final class ContactModel extends FaceLockModel{
 		if(contact == null) return 0;
 		return contact.getID();
 	}
+	
 	/**
 	 * getFirstName
 	 *
@@ -200,6 +193,7 @@ public final class ContactModel extends FaceLockModel{
 		if(contact == null) return null;
 		return contact.getFirstName();
 	}
+	
 	/**
 	 * getMiddleName
 	 *
@@ -210,6 +204,7 @@ public final class ContactModel extends FaceLockModel{
 		if(contact == null) return null;
 		return contact.getMiddleName();
 	}
+	
 	/**
 	 * getLastName
 	 *
@@ -277,6 +272,7 @@ public final class ContactModel extends FaceLockModel{
 		changed = true;
 		contact.setID(id);
 	}
+	
 	/**
 	 * setFirstName
 	 *
@@ -288,6 +284,7 @@ public final class ContactModel extends FaceLockModel{
 		changed = true;
 	 	contact.setFirstName(fname);
 	}
+	
 	/**
 	 * setMiddleName
 	 *
@@ -299,6 +296,7 @@ public final class ContactModel extends FaceLockModel{
 		changed = true;
 		contact.setMiddleName(mname);
 	}
+	
 	/**
 	 * setLastName
 	 *
@@ -310,6 +308,7 @@ public final class ContactModel extends FaceLockModel{
 		changed = true;
 	 	contact.setLastName(lname);
 	}
+	
 	/**
 	 * setIcon
 	 *

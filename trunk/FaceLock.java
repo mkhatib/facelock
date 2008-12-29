@@ -32,27 +32,13 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 	
 	private InformationPanel infoPanel = new InformationPanel(model);
 	private JToolBar toolbar = new FLToolBar(model,infoPanel);
-	
-	
-	// {{{ FaceLock constructor
-    /**
-     * 
-     */
+
     public FaceLock() {
         super("FaceLock!");
 		setJMenuBar(menubar);
 		add(container);
 		model.addActionListener(this);
-		/*
-				// Adding Some Demo Records.
-				listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Cool.png"), "Mohammad N. Khatib"});
-				listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Adore.png"), "Ramiz Abu Khiran"});
-				listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Study.png"), "Walid Abu Salah"});
-				listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Laugh.png"), "Ra'fat Sabbah"});
-				listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Study.png"), "Mohammad Lahaseh"});
-				listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Furious.png"), "Samer Shadafan"});
-				listModel.addElement(new Object[] {new ImageIcon("Images/Smilies/48x48/Pudently.png"), "Bilal Ajaleen"});
-				*/
+		
 		// Setting the Cell Renderer to render the string and Icons
 		contactList.setCellRenderer(contactListCellRenderer);
 		contactList.setDragEnabled(true);
@@ -73,7 +59,6 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		// Show the Frame
 		setVisible(true);
     }
-	// }}}
 	
 	/**
 	 * actionPerformed
@@ -87,20 +72,7 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		{
 			setSize(listDimensions);
 			System.out.println("LOOOOOOOOOOOOOOOOOOOOGIN!");
-			//listModel.clear();
-			//contactList.removeAll();
-			//for(int i=0; i < listModel.getSize(); i++)
-			//	listModel.remove(i);
-			//contactList.setModel(listModel);
-			//contactList = new JList(listModel);
-			//scrollPane = new JScrollPane(contactList);
-			/*listModel = new DefaultListModel();
-						contactList = new JList(listModel);	
-						scrollPane = new JScrollPane(contactList);
-						contactList.setCellRenderer(contactListCellRenderer);
-						
-						contactList.validate();
-						*/
+			
 			ArrayList<Contact> contacts = model.getContacts();
 			for(int i=0; i < contacts.size(); i++)
 				listModel.addElement(contacts.get(i));
@@ -128,22 +100,9 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			
 		}
 		else if(action.equals("Logout Succeeded")){
-			//listModel = new DefaultListModel();
-			//for(int i=0; i < listModel.getSize(); i++)
-			//	listModel.removeElement(listModel.getElementAt(i));
 			setSize(loginDimensions);
-				
 			listModel.clear();
-			//contactList.removeAll();
-			
-			//int selectedIndex = contactList.getSelectedIndex();
-			
-			//contactList.setSelectedIndex(0);
-			
-				
-			//contactList.validate();
 			remove(container);
-			//validate();
 			container = new JPanel(new BorderLayout());
 			container.add(loginPanel);
 			add(container);
@@ -151,12 +110,6 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			validate();
 		}
 		else if(action.equals("Updated Successfully") || action.equals("Added Successfully") ){
-/*			Contact selected = (Contact)contactList.getSelectedValue();
-			if(selected == null){
-				selected = contacts.get(0);
-			}
-*/			//if(listModel.getSize() > 0)
-			//	listModel = new DefaultListModel();
 			listModel.clear();
 			contactList.removeAll();
 			ArrayList<Contact> contacts = model.getContacts();
@@ -169,29 +122,10 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			
 			
 			contactList.validate();
-			infoPanel.setContact(contacts.get(contacts.size()-1));
-			//contactList.updateUI();
-/*			Contact con = null;
-			for(int i=0; i < contacts.size(); i++)
-				if((con = contacts.get(i)).getID() == contactID){
-					con.setFirstName(firstName);
-					con.setLastName(lastName);
-					con.setMiddleName(middleName);
-					con.setPhone(phone);
-					con.setAddress(address);
-					con.setEmail(email);
-					con.setIcon(icon);
-					break;
-				}
-*/			
-				
+			infoPanel.setContact(contacts.get(contacts.size()-1));	
 		}
+		
 		else if(action.equals("Deleted Successfully")){
-			/*for(int i=0; i < listModel.getSize(); i++)
-							if(((Contact)listModel.getElementAt(i)).getID() == e.getID()){
-								listModel.remove(i);
-								break;
-							}*/
 			
 			listModel.removeElementAt(contactList.getSelectedIndex());
 		}
@@ -199,11 +133,11 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			listModel.clear();
 			contactList.removeAll();
 			ArrayList<Contact> contacts = model.getContacts();
+			
 			for(int i=0; i < contacts.size(); i++)
 				listModel.addElement(contacts.get(i));
-			//int selectedIndex = contactList.getSelectedIndex();
+			
 			contactList.setSelectedIndex(0);
-			//contactList.setSelectedIndex(selectedIndex);
 			contactList.validate();
 			
 		}
@@ -212,7 +146,6 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		}
 	}
 
-	
 	/**
 	 * valueChanged
 	 *
@@ -233,11 +166,6 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			infoPanel.setSelectedIndex(0);
 		}
 	}
-
-	
-	
-	
-	
 	
 	public static void main(String[] args){
 		FaceLock fl = new FaceLock();

@@ -20,14 +20,10 @@ public final class Utilities {
 		(new ImageIcon("Images/Smilies/48x48/Study.png")),
 		(new ImageIcon("Images/Smilies/48x48/Sweet-angel.png"))
 	};
-	// {{{ Utilities constructor
-    /**
-     * 
-     */
+
     public Utilities() {
         
     }
-	// }}}
 	
 	/**
 	 * getImageIcon
@@ -38,6 +34,7 @@ public final class Utilities {
 	public static ImageIcon getImageIcon(int icon) {
 		return ICONS[icon];
 	}
+	
 	/**
 	 * getAllIcons
 	 *

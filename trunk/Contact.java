@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+
 /**
  * Wrap up Contact Information 
  *
@@ -14,15 +15,9 @@ public final class Contact implements Serializable{
 	private String firstName,middleName,lastName;
 	private int icon;
 	private String address, phone, email;
-	
-	// Constructors
-	// {{{ Contact constructor
-    /**
-     * 
-     */
+
     public Contact() {        
     }
-	// }}}
 	
 	public Contact(int id, String fname, String mname, String lname, String phone, String address, String email, int icon){
 		setID(id);
@@ -39,9 +34,6 @@ public final class Contact implements Serializable{
 		this(0,fname,mname,lname,phone,address,email,icon);
 	}
 
-
-
-	
 	/*
 	 * toString
 	 *
@@ -62,8 +54,6 @@ public final class Contact implements Serializable{
 		return (firstName + " " + middleName + " " + lastName);
 	}
 
-	
-	
 	// Setters
 	/**
 	 * setEmail
@@ -74,6 +64,7 @@ public final class Contact implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	/**
 	 * setPhone
 	 *
@@ -83,6 +74,7 @@ public final class Contact implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
 	/**
 	 * setAddress
 	 *
@@ -91,7 +83,8 @@ public final class Contact implements Serializable{
 	 */
 	public void setAddress(String address) {
 		this.address = address;
-	}	
+	}
+	
 	/**
 	 * setID
 	 *
@@ -101,6 +94,7 @@ public final class Contact implements Serializable{
 	public void setID(int id) {
 		this.id = id;
 	}
+	
 	/**
 	 * setFirstName
 	 *
@@ -110,6 +104,7 @@ public final class Contact implements Serializable{
 	public void setFirstName(String fname) {
 		this.firstName = fname;
 	}
+	
 	/**
 	 * setMiddleName
 	 *
@@ -119,6 +114,7 @@ public final class Contact implements Serializable{
 	public void setMiddleName(String mname) {
 		this.middleName = mname;
 	}
+	
 	/**
 	 * setLastName
 	 *
@@ -128,6 +124,7 @@ public final class Contact implements Serializable{
 	public void setLastName(String lname) {
 		this.lastName = lname;
 	}
+	
 	/**
 	 * setIcon
 	 *
@@ -137,6 +134,7 @@ public final class Contact implements Serializable{
 	public void setIcon(int icon) {
 		this.icon = icon;
 	}
+	
 	/**
 	 * getID
 	 *
@@ -146,6 +144,7 @@ public final class Contact implements Serializable{
 	public int getID() {
 		return id;
 	}
+	
 	/**
 	 * getFirstName
 	 *
@@ -155,6 +154,7 @@ public final class Contact implements Serializable{
 	public String getFirstName() {
 		return firstName;
 	}
+	
 	/**
 	 * getMiddleName
 	 *
@@ -164,6 +164,7 @@ public final class Contact implements Serializable{
 	public String getMiddleName() {
 		return middleName;
 	}
+	
 	/**
 	 * getLastName
 	 *
@@ -173,6 +174,7 @@ public final class Contact implements Serializable{
 	public String getLastName() {
 		return lastName;
 	}
+	
 	/**
 	 * getIcon
 	 *
@@ -182,6 +184,7 @@ public final class Contact implements Serializable{
 	public int getIcon() {
 		return icon;
 	}
+	
 	// Getters 
 	/**
 	 * getEmail
@@ -192,6 +195,7 @@ public final class Contact implements Serializable{
 	public String getEmail() {
 		return email;
 	}
+	
 	/**
 	 * getPhone
 	 *
@@ -201,6 +205,7 @@ public final class Contact implements Serializable{
 	public String getPhone() {
 		return phone;
 	}
+	
 	/**
 	 * getAddress
 	 *

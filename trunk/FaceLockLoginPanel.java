@@ -16,10 +16,7 @@ public final class FaceLockLoginPanel extends JPanel implements ActionListener {
 	private JLabel usernameLbl = new JLabel("Username", JLabel.TRAILING);
 	private JLabel passwordLbl = new JLabel("Password", JLabel.TRAILING);
 	private FLClient model;
-	// {{{ FaceLockLoginPanel constructor
-    /**
-     * 
-     */
+	
     public FaceLockLoginPanel(FLClient model) {
 		this.model = model;
         JPanel logoPanel = new JPanel(new FlowLayout());
@@ -32,7 +29,6 @@ public final class FaceLockLoginPanel extends JPanel implements ActionListener {
 		passwordPanel.add(passwordLbl);
 		passwordPanel.add(passwordTF);
 		JPanel buttonsPanel = new JPanel(new FlowLayout());
-		//loginBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		buttonsPanel.add(loginBtn);
 		buttonsPanel.add(registerBtn);
 		
@@ -49,18 +45,9 @@ public final class FaceLockLoginPanel extends JPanel implements ActionListener {
 		add(controlsPanel);
 		add(Box.createRigidArea(new Dimension(0,150)));		
 		
-		
-		
-		/*Insets insets = this.getInsets();
-				Dimension size = usernameLbl.getPreferredSize();
-				usernameLbl.setBounds((int)((insets.left + insets.right)/2), (int)((insets.top + insets.bottom)/2),
-				             size.width, size.height);
-				*/
-		
 		loginBtn.addActionListener(this);
 		registerBtn.addActionListener(this);
     }
-	// }}}
 	
 	/**
 	 * actionPerformed

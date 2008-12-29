@@ -9,6 +9,7 @@ import java.awt.event.*;
  * @author Mohammad Khatib &lt;&gt;
  * @version $Rev$
  */
+ 
 public  class FLToolBar extends JToolBar implements ActionListener{
     
 	private FLClient model;
@@ -29,10 +30,7 @@ public  class FLToolBar extends JToolBar implements ActionListener{
 	
 	private String searchKey="";
 	private int searchBy=1;
-	// {{{ FLToolBar constructor
-    /**
-     * 
-     */
+
     public FLToolBar(FLClient model) {
 		this.model = model;
 		// Loop Over the Array of text or icons
@@ -54,18 +52,13 @@ public  class FLToolBar extends JToolBar implements ActionListener{
 			add(btn);
 		}
     }
-	// }}}
+	
 	public FLToolBar(FLClient model, InformationPanel infoPanel)
 	{
 		this(model);
 		this.infoPanel = infoPanel;
 	}
-	/**
-	 * actionPerformed
-	 *
-	 * @param e 
-	 * @return 
-	 */
+	
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 		if(action.equals("Logout")){

@@ -45,7 +45,6 @@ public final class FLMenuBar extends JMenuBar implements ActionListener {
 		add(file);
 		add(more);
     }
-	// }}}
 	
 	/**
 	 * actionPerformed
@@ -71,13 +70,11 @@ public final class FLMenuBar extends JMenuBar implements ActionListener {
 			JOptionPane.showMessageDialog(null,"If You need any help, please call 911! :P", "Call 911!", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else if(action.equals("About")){
-			String[] names = {"Noura Yousef Salhi - 105.0046", "Dima Samarah - 105.00", "Mohammad N. Khatib - 105.1104"};
+			String[] names = {"Noura Yousef Salhi - 105.0046", "Dima Samarah - 105.0076", "Mohammad N. Khatib - 105.1104"};
 			ImageIcon icon = new ImageIcon("Images/Icons/ok.png");
 			AboutDialog about = new AboutDialog(null,true,names,icon);
 			//JOptionPane.showMessageDialog(null,"This Program was Developed By:\n\t- Noura Yousef Salhi 105.0046\n\t- Dima Samarah 105.00\n\t- Mohammad N. Khatib 105.1104", "About!", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 	}
-
-	
 }
