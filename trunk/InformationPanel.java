@@ -247,6 +247,7 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		if(phoneTF.getText().trim().length() == 0 ) return false;
 		if(addressTF.getText().trim().length() == 0 ) return false;
 		if(emailTF.getText().trim().length() == 0 ) return false;
+		return true;
 	}
 
 	
