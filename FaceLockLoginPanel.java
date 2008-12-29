@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 /**
  * <<Class summary>>
  *
@@ -21,7 +22,9 @@ public final class FaceLockLoginPanel extends JPanel implements ActionListener {
      */
     public FaceLockLoginPanel(FLClient model) {
 		this.model = model;
-        
+        JPanel logoPanel = new JPanel(new FlowLayout());
+		logoPanel.add(new JLabel(new ImageIcon("Images/Logo/man.png"), JLabel.LEFT));
+		
 		JPanel usernamePanel = new JPanel(new FlowLayout());
 		usernamePanel.add(usernameLbl);
 		usernamePanel.add(usernameTF);
@@ -33,12 +36,17 @@ public final class FaceLockLoginPanel extends JPanel implements ActionListener {
 		buttonsPanel.add(loginBtn);
 		buttonsPanel.add(registerBtn);
 		
-		
+		JPanel controlsPanel = new JPanel();
+		controlsPanel.setLayout(new BoxLayout(controlsPanel, BoxLayout.Y_AXIS));
+		controlsPanel.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Login Information"),new EmptyBorder(10,10,10,10)));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		add(Box.createRigidArea(new Dimension(0,150)));
-		add(usernamePanel);
-		add(passwordPanel);
-		add(buttonsPanel);
+		
+		add(Box.createRigidArea(new Dimension(0,25)));
+		add(logoPanel);
+		controlsPanel.add(usernamePanel);
+		controlsPanel.add(passwordPanel);
+		controlsPanel.add(buttonsPanel);
+		add(controlsPanel);
 		add(Box.createRigidArea(new Dimension(0,150)));		
 		
 		

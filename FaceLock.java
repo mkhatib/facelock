@@ -14,9 +14,10 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 	// Model 
 	private FLClient model = new FLClient();
 	private JPanel container = new JPanel(new BorderLayout());
-	
+	private FLMenuBar menubar = new FLMenuBar(model);
 	// Dimension of the GUI Frame
-	private Dimension dimensions = new Dimension(300,500);
+	private Dimension loginDimensions = new Dimension(300,600);
+	private Dimension listDimensions = new Dimension(750,600);
 	// A Helper Class to enable the JList rendering the Icons besides the names
 	private ListCellRenderer contactListCellRenderer = new ContactListCellRenderer();
 	// Default Model for the JList, listModel will be used to add new elements to the list.
@@ -39,6 +40,7 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
      */
     public FaceLock() {
         super("FaceLock!");
+		setJMenuBar(menubar);
 		add(container);
 		model.addActionListener(this);
 		/*
@@ -67,7 +69,7 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		
 		setResizable(false);
 		// Set The Frame Size to dimensions
-		setSize(dimensions);
+		setSize(loginDimensions);
 		// Show the Frame
 		setVisible(true);
     }
@@ -83,7 +85,7 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		String action = e.getActionCommand();
 		if(action.equals("Login Succeeded"))
 		{
-			setSize(700,500);
+			setSize(listDimensions);
 			System.out.println("LOOOOOOOOOOOOOOOOOOOOGIN!");
 			//listModel.clear();
 			//contactList.removeAll();
@@ -105,9 +107,15 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			contactList.validate();
 			
 			if(contacts.size() > 0)
+			{
 				infoPanel.setContact(contacts.get(0));
+				infoPanel.setSelectedIndex(0);
+			}	
 			else
+			{
 				infoPanel.newContact();
+				infoPanel.setSelectedIndex(0);
+			}	
 			remove(container);
 			container = new JPanel(new BorderLayout());
 			container.add(toolbar, BorderLayout.NORTH);
@@ -123,6 +131,7 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			//listModel = new DefaultListModel();
 			//for(int i=0; i < listModel.getSize(); i++)
 			//	listModel.removeElement(listModel.getElementAt(i));
+			setSize(loginDimensions);
 				
 			listModel.clear();
 			//contactList.removeAll();
@@ -141,7 +150,7 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			
 			validate();
 		}
-		else if(action.equals("Updated Successfully") || action.equals("Added Successfully")){
+		else if(action.equals("Updated Successfully") || action.equals("Added Successfully") ){
 /*			Contact selected = (Contact)contactList.getSelectedValue();
 			if(selected == null){
 				selected = contacts.get(0);
@@ -156,6 +165,9 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			int selectedIndex = contactList.getSelectedIndex();
 			contactList.setSelectedIndex(0);
 			contactList.setSelectedIndex(selectedIndex);
+			infoPanel.setSelectedIndex(selectedIndex);
+			
+			
 			contactList.validate();
 			infoPanel.setContact(contacts.get(contacts.size()-1));
 			//contactList.updateUI();
@@ -183,6 +195,21 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 			
 			listModel.removeElementAt(contactList.getSelectedIndex());
 		}
+		else if(action.equals("Sorted Successfully")){
+			listModel.clear();
+			contactList.removeAll();
+			ArrayList<Contact> contacts = model.getContacts();
+			for(int i=0; i < contacts.size(); i++)
+				listModel.addElement(contacts.get(i));
+			//int selectedIndex = contactList.getSelectedIndex();
+			contactList.setSelectedIndex(0);
+			//contactList.setSelectedIndex(selectedIndex);
+			contactList.validate();
+			
+		}
+		else if(action.equals("Search Done")){
+			contactList.setSelectedIndex(e.getID());
+		}
 	}
 
 	
@@ -196,9 +223,15 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		Contact contact = (Contact)contactList.getSelectedValue();
 		//System.out.println("ID SELECTED: " + contact.getID());
 		if(contact != null)
+		{
 			infoPanel.setContact(contact);
+			infoPanel.setSelectedIndex(contactList.getSelectedIndex());
+		}
 		else
+		{
 			infoPanel.newContact();
+			infoPanel.setSelectedIndex(0);
+		}
 	}
 
 	
