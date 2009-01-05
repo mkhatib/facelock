@@ -77,16 +77,19 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		layout.setAlignment(FlowLayout.CENTER);
 		
 		JPanel upperPanel = new JPanel();
-		layout.layoutContainer(upperPanel);
-		upperPanel.setLayout(layout);
-		upperPanel.add(iconTxt);
-		Font font = new Font("Calibri", Font.BOLD, 32);
-		JPanel namePanel = new JPanel();
+		upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
+		JPanel iconPanel = new JPanel();
+		iconPanel.add(iconTxt);
+		upperPanel.add(iconPanel);
 		
+		Font font = new Font("Calibri", Font.BOLD, 32);
+		Font smallFont = new Font("Calibri", Font.PLAIN, 24);
 		firstNameTxt.setFont(font);
 		middleNameTxt.setFont(font);
 		lastNameTxt.setFont(font);
 		
+
+		JPanel namePanel = new JPanel();
 		
 		namePanel.add(firstNameTxt);
 		namePanel.add(middleNameTxt);
@@ -94,14 +97,16 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		
 		upperPanel.add(namePanel);
 		
-		JPanel lowerPanel = new JPanel(new GridLayout(4,2,1,1));
-		lowerPanel.add(phoneLbl);
+		
+		phoneTxt.setFont(smallFont);
+		addressTxt.setFont(smallFont);
+		emailTxt.setFont(smallFont);
+
+		
+		JPanel lowerPanel = new JPanel(new GridLayout(4,1,1,1));
 		lowerPanel.add(phoneTxt);
-		lowerPanel.add(addressLbl);
 		lowerPanel.add(addressTxt);
-		lowerPanel.add(emailLbl);
 		lowerPanel.add(emailTxt);
-		lowerPanel.add(Box.createRigidArea(new Dimension(0,0)));
 		
 		
 		
