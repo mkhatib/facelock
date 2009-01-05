@@ -20,7 +20,22 @@ public final class Utilities {
 		(new ImageIcon("Images/Smilies/48x48/Study.png")),
 		(new ImageIcon("Images/Smilies/48x48/Sweet-angel.png"))
 	};
-
+	public final static ImageIcon[] BIG_ICONS = {
+		(new ImageIcon("Images/Smilies/128x128/Adore.png")),
+		(new ImageIcon("Images/Smilies/128x128/Cool.png")),
+		(new ImageIcon("Images/Smilies/128x128/Cry.png")),
+		(new ImageIcon("Images/Smilies/128x128/Furious.png")),
+		(new ImageIcon("Images/Smilies/128x128/Laugh.png")),
+		(new ImageIcon("Images/Smilies/128x128/Pudently.png")),
+		(new ImageIcon("Images/Smilies/128x128/Struggle.png")),
+		(new ImageIcon("Images/Smilies/128x128/Study.png")),
+		(new ImageIcon("Images/Smilies/128x128/Sweet-angel.png"))
+	};
+	
+	// {{{ Utilities constructor
+    /**
+     * 
+     */
     public Utilities() {
         
     }
