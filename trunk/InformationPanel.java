@@ -32,9 +32,18 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	private JLabel emailLbl = new JLabel("Email");
 	private JLabel iconLbl = new JLabel("Icon");
 	
+	// Text
+	private JLabel firstNameTxt 	= new JLabel();
+	private JLabel middleNameTxt	= new JLabel();
+	private JLabel lastNameTxt 		= new JLabel();
+	private JLabel phoneTxt 		= new JLabel();
+	private JLabel addressTxt 		= new JLabel();
+	private JLabel emailTxt 		= new JLabel();
+	private JLabel iconTxt 			= new JLabel();
+	
 	// Buttons
 	private JButton saveBtn = new JButton("Save" ,new ImageIcon("Images/Icons/ok.png"));
-	private JButton updateBtn = new JButton("Update");
+	private JButton editBtn = new JButton("Edit");
 	private JButton cancelBtn = new JButton("Cancel", new ImageIcon("Images/Icons/cancel.png"));
 	
 	// Layout
@@ -46,6 +55,116 @@ public final class InformationPanel extends JPanel implements ActionListener {
         this.model = model;
 		setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Contact Information"),new EmptyBorder(10,50,10,50)));
 		
+		showInfoPanel();
+
+		cancelBtn.addActionListener(this);
+		saveBtn.addActionListener(this);
+		editBtn.addActionListener(this);
+    }
+
+
+	/**
+	 * showInfoPanel
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public void showInfoPanel() {
+		removeAll();
+		validate();
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		FlowLayout layout = new FlowLayout();
+		layout.setAlignment(FlowLayout.CENTER);
+		
+		JPanel upperPanel = new JPanel();
+		layout.layoutContainer(upperPanel);
+		upperPanel.setLayout(layout);
+		upperPanel.add(iconTxt);
+		Font font = new Font("Calibri", Font.BOLD, 32);
+		JPanel namePanel = new JPanel();
+		
+		firstNameTxt.setFont(font);
+		middleNameTxt.setFont(font);
+		lastNameTxt.setFont(font);
+		
+		
+		namePanel.add(firstNameTxt);
+		namePanel.add(middleNameTxt);
+		namePanel.add(lastNameTxt);
+		
+		upperPanel.add(namePanel);
+		
+		JPanel lowerPanel = new JPanel(new GridLayout(4,2,1,1));
+		lowerPanel.add(phoneLbl);
+		lowerPanel.add(phoneTxt);
+		lowerPanel.add(addressLbl);
+		lowerPanel.add(addressTxt);
+		lowerPanel.add(emailLbl);
+		lowerPanel.add(emailTxt);
+		lowerPanel.add(Box.createRigidArea(new Dimension(0,0)));
+		
+		
+		
+		FlowLayout fl = new FlowLayout();
+		fl.setAlignment(FlowLayout.RIGHT);
+		JPanel editPanel = new JPanel(fl);
+		editPanel.add(editBtn);
+		
+		lowerPanel.add(editPanel);
+		
+		
+		
+		add(upperPanel/*,BorderLayout.NORTH*/);
+
+		add(lowerPanel/*, BorderLayout.CENTER*/);
+		
+		
+		
+		/*setLayout(new GridLayout(8,2,1,1));
+		add(firstNameLbl);
+		add(firstNameTxt);
+		
+		add(middleNameLbl);
+		add(middleNameTxt);
+		
+		add(lastNameLbl);
+		add(lastNameTxt);
+		
+		add(phoneLbl);
+		add(phoneTxt);
+		
+		add(addressLbl);
+		add(addressTxt);
+		
+		add(emailLbl);
+		add(emailTxt);
+		
+		add(iconLbl);
+		add(iconTxt);
+		add(Box.createRigidArea(new Dimension(0,0)));
+		FlowLayout fl = new FlowLayout();
+		fl.setAlignment(FlowLayout.RIGHT);
+		JPanel editPanel = new JPanel(fl);
+		
+		editPanel.add(editBtn);
+		add(editPanel);*/
+		updateInfo();
+//		add(cancelBtn);
+		validate();
+		repaint();
+	}
+
+	
+
+	/**
+	 * showEditPanel
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public void showEditPanel() {
+		removeAll();
+		validate();
 		setLayout(new GridLayout(8,2,1,1));
 		add(firstNameLbl);
 		add(firstNameTF);
@@ -68,18 +187,17 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		add(iconLbl);
 		add(iconCB);
 		
-		JPanel buttonsPanel = new JPanel();
-		buttonsPanel.add(saveBtn);
-		//buttonsPanel.add(updateBtn);
-		buttonsPanel.add(cancelBtn);
-		add(Box.createRigidArea(new Dimension(0,0)));
-		add(buttonsPanel);
+		add(saveBtn);
+		add(cancelBtn);
 		
+		add(saveBtn);
+		add(cancelBtn);
 		
-		cancelBtn.addActionListener(this);
-		saveBtn.addActionListener(this);
-
-    }
+		validate();
+		repaint();
+	}
+	
+	
 	public InformationPanel(FLClient model, Contact contact) {
 		this(model);
         
@@ -95,7 +213,7 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	 * @return 
 	 */
 	public void updateFields() {
-		if(currentContact == null) newContact();
+		if(currentContact == null) 			newContact();
 		firstNameTF.setText(currentContact.getFirstName());
 		middleNameTF.setText(currentContact.getMiddleName());
 		lastNameTF.setText(currentContact.getLastName());
@@ -106,6 +224,26 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	}
 	
 	/**
+	 * updateLabels
+	 *
+	 * @param  
+	 * @return 
+	 */
+	public void updateInfo() {
+		if(currentContact == null) return;
+		firstNameTxt.setText(currentContact.getFirstName());
+		middleNameTxt.setText(currentContact.getMiddleName());
+		lastNameTxt.setText(currentContact.getLastName());
+		phoneTxt.setText(currentContact.getPhone());
+		addressTxt.setText(currentContact.getAddress());
+		emailTxt.setText(currentContact.getEmail());
+		iconTxt.setIcon(Utilities.BIG_ICONS[currentContact.getIcon()]);
+		
+	}
+
+	
+	
+	/**
 	 * setContact
 	 *
 	 * @param contact 
@@ -114,6 +252,8 @@ public final class InformationPanel extends JPanel implements ActionListener {
 	public void setContact(Contact contact) {
 		this.currentContact = contact;
 		isNew = false;
+		showInfoPanel();
+		updateInfo();
 		updateFields();
 	}
 
@@ -162,6 +302,8 @@ public final class InformationPanel extends JPanel implements ActionListener {
 		emailTF.setText("");
 		iconCB.setSelectedIndex(0);
 		isNew = true;	
+		showEditPanel();
+		
 	}
 
 	/**
@@ -189,9 +331,15 @@ public final class InformationPanel extends JPanel implements ActionListener {
 				}
 			}
 		}
-		else if(action.equals("Cancel")){
+		else if(action.equals("Edit")){
+			showEditPanel();
 			updateFields();
 		}
+		else if(action.equals("Cancel")){
+			//updateFields();
+			showInfoPanel();
+		}
+		
 	}
 
 	/**

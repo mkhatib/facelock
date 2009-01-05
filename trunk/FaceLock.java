@@ -71,8 +71,6 @@ public final class FaceLock extends JFrame implements ActionListener, ListSelect
 		if(action.equals("Login Succeeded"))
 		{
 			setSize(listDimensions);
-			System.out.println("LOOOOOOOOOOOOOOOOOOOOGIN!");
-			
 			ArrayList<Contact> contacts = model.getContacts();
 			for(int i=0; i < contacts.size(); i++)
 				listModel.addElement(contacts.get(i));
